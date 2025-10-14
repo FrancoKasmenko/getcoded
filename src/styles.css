@@ -755,3 +755,53 @@ textarea:focus {
     grid-template-columns: repeat(4, minmax(260px, 1fr));
   }
 }
+:root { --header-h: 64px; } /* ajustá si tu header es más alto */
+
+/* Overlay del fondo */
+.menu-overlay{
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(2px);
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s cubic-bezier(.2,.8,.2,1);
+  z-index: 40;
+}
+.menu-overlay.show{ opacity: 1; pointer-events: auto; }
+
+/* Panel móvil */
+@media (max-width: 960px){
+  .nav{ display: none; }
+  .nav.open{
+    position: fixed;
+    left: 0; right: 0;
+    top: var(--header-h);               /* empieza DEBAJO del header */
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem var(--space-2) 2rem;
+    background: rgba(15,17,21,.96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #171a1f;
+    overflow:auto;
+    z-index: 45;
+    transform: translateY(-8px);
+    opacity: 0;
+    animation: navDrop .24s cubic-bezier(.2,.8,.2,1) forwards;
+  }
+
+  @keyframes navDrop{
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Hamburguesa animada (X) */
+  .nav-toggle{ display:block; position:relative; z-index:50; }
+  .nav-toggle span{
+    position:absolute; left:7px; right:7px; height:2px; background:#cfd3d7;
+    transition: transform .25s cubic-bezier(.2,.8,.2,1), top .25s, opacity .2s;
+  }
+  .nav-toggle span:nth-child(1){ top:11px; }
+  .nav-toggle span:nth-child(2){ top:21px; }
+  .nav-toggle.is-open span:nth-child(1){ top:16px; transform: rotate(45deg); }
+  .nav-toggle.is-open span:nth-child(2){ top:16px; transform: rotate(-45deg); }
+}
