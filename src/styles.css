@@ -774,10 +774,9 @@ textarea:focus {
   .nav.open{
     position: fixed;
     left: 0; right: 0;
-    top: var(--header-h);               /* empieza DEBAJO del header */
-    bottom: 0;
     display: flex;
     flex-direction: column;
+    margin-top: 54px;
     gap: .5rem;
     padding: 1rem var(--space-2) 2rem;
     background: rgba(15,17,21,.96);
