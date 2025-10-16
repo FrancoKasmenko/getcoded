@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Section from "./Section.jsx";
 import { useTranslation } from "react-i18next";
+import logo from "../assets/whatsapp.webp";
 
 export default function Contact() {
   const { t, i18n } = useTranslation();
@@ -15,11 +16,11 @@ export default function Contact() {
     setError(false);
     setLoading(true);
 
-    const form = new FormData(e.currentTarget);
+    const f = new FormData(e.currentTarget);
     const payload = {
-      name: form.get("name"),
-      email: form.get("email"),
-      message: form.get("message"),
+      name: f.get("name"),
+      email: f.get("email"),
+      message: f.get("message"),
     };
 
     try {
@@ -32,9 +33,7 @@ export default function Contact() {
       if (data.ok) {
         setSent(true);
         e.target.reset();
-      } else {
-        setError(true);
-      }
+      } else setError(true);
     } catch {
       setError(true);
     } finally {
@@ -58,12 +57,7 @@ export default function Contact() {
         <form className="form" onSubmit={handleSubmit}>
           <label>
             {t("contact.name")}
-            <input
-              required
-              name="name"
-              placeholder={t("contact.name")}
-              autoComplete="name"
-            />
+            <input required name="name" placeholder={t("contact.name")} />
           </label>
 
           <label>
@@ -73,8 +67,6 @@ export default function Contact() {
               type="email"
               name="email"
               placeholder={t("contact.email")}
-              autoComplete="email"
-              inputMode="email"
             />
           </label>
 
@@ -116,6 +108,24 @@ export default function Contact() {
             {t("contact.also")}
           </p>
         </form>
+
+        <a
+          href="https://wa.me/59892249764?text=Hola%20GetCoded%2C%20quiero%20hacer%20una%20consulta"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn--outline"
+          style={{
+            marginTop: 16,
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <img src={logo} alt="WhatsApp" style={{ width: 20, height: 20 }} />
+          {i18n.language.startsWith("en")
+            ? "Chat on WhatsApp"
+            : "Contactar por WhatsApp"}
+        </a>
       </div>
     </Section>
   );

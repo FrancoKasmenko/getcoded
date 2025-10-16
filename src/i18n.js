@@ -160,7 +160,7 @@ const resources = {
                 email: "Email",
                 message: "Mensaje",
                 send: "Enviar",
-                also: "También podés escribirnos a contact@getcoded.agency",
+                also: "También podés escribirnos a gaston.britos@get-coded.com o franco.kasmenko@get-coded.com",
                 bullets: ["Propuesta en 48 h", "Sin letra chica", "Entrega por etapas"]
             }
         }
@@ -324,7 +324,7 @@ const resources = {
                 email: "Email",
                 message: "Message",
                 send: "Send",
-                also: "You can also email contact@getcoded.agency",
+                also: "You can also email gaston.britos@get-coded.com o franco.kasmenko@get-coded.com",
                 bullets: ["Quote in 48h", "No fine print", "Staged delivery"]
             }
         }

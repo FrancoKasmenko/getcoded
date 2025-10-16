@@ -9,6 +9,7 @@ import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
 import Pricing from "./components/Pricing.jsx";
 import Cursor from "./components/Cursor.jsx";
+import FloatingLogo from "./components/FloatingLogo.jsx";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
       </main>
       <Footer />
       <Cursor />
+      <FloatingLogo />
     </>
   );
 }

@@ -25,17 +25,19 @@ export default function Header() {
         </nav>
 
         <button
-  className={`nav-toggle ${open ? "is-open" : ""}`}
-  aria-label={open ? "Cerrar menú" : "Abrir menú"}
-  aria-expanded={open}
-  onClick={() => setOpen((v) => !v)}
->
-  <span></span><span></span>
-</button>
+          className={`nav-toggle ${open ? "is-open" : ""}`}
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span></span>
+          <span></span>
+        </button>
 
-{/* Overlay para oscurecer fondo */}
-<div className={`menu-overlay ${open ? "show" : ""}`} onClick={() => setOpen(false)} />
-
+        <div
+          className={`menu-overlay ${open ? "show" : ""}`}
+          onClick={() => setOpen(false)}
+        />
       </div>
     </header>
   );
