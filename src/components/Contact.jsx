@@ -23,7 +23,7 @@ export default function Contact() {
     };
 
     try {
-      const r = await fetch("/api/contact.js", {
+      const r = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -90,7 +90,9 @@ export default function Contact() {
 
           <button className="btn btn--solid" disabled={loading}>
             {loading
-              ? t("contact.sending") || "Enviando..."
+              ? i18n.language.startsWith("en")
+                ? "Sending..."
+                : "Enviando..."
               : t("contact.send")}
           </button>
 
