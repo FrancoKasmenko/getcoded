@@ -1,14 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import Section from "./Section.jsx";
 import { useTranslation } from "react-i18next";
 
 export default function Contact() {
   const { t, i18n } = useTranslation();
   const bullets = t("contact.bullets", { returnObjects: true }) || [];
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  // Si volvemos con ?sent=1, mostramos un mensajito
-  const url = typeof window !== "undefined" ? new URL(window.location.href) : null;
-  const sent = url?.searchParams.get("sent") === "1";
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setSent(false);
+    setError(false);
+    setLoading(true);
+
+    const form = new FormData(e.currentTarget);
+    const payload = {
+      name: form.get("name"),
+      email: form.get("email"),
+      message: form.get("message"),
+    };
+
+    try {
+      const r = await fetch("../api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await r.json();
+      if (data.ok) {
+        setSent(true);
+        e.target.reset();
+      } else {
+        setError(true);
+      }
+    } catch {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <Section id="contacto" alt>
@@ -16,20 +48,14 @@ export default function Contact() {
         <div>
           <h2>{t("sections.contact_h")}</h2>
           <p className="muted">{t("sections.contact_p")}</p>
-          <ul className="bullets">{bullets.map((b) => <li key={b}>{b}</li>)}</ul>
+          <ul className="bullets">
+            {bullets.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
         </div>
 
-        <form
-          className="form"
-          action="https://formspree.io/f/xovkpgvl"
-          method="POST"
-          acceptCharset="UTF-8"
-        >
-          {/* Hidden extras */}
-          <input type="hidden" name="_subject" value="Nuevo contacto — GetCoded" />
-          <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
-          <input type="hidden" name="_next" value="/?sent=1#contacto" />
-
+        <form className="form" onSubmit={handleSubmit}>
           <label>
             {t("contact.name")}
             <input
@@ -62,7 +88,11 @@ export default function Contact() {
             />
           </label>
 
-          <button className="btn btn--solid">{t("contact.send")}</button>
+          <button className="btn btn--solid" disabled={loading}>
+            {loading
+              ? t("contact.sending") || "Enviando..."
+              : t("contact.send")}
+          </button>
 
           {sent && (
             <p className="tiny" style={{ color: "#60d394", marginTop: 8 }}>
@@ -72,7 +102,17 @@ export default function Contact() {
             </p>
           )}
 
-          <p className="tiny muted" style={{ marginTop: 8 }}>{t("contact.also")}</p>
+          {error && (
+            <p className="tiny" style={{ color: "#ff6b6b", marginTop: 8 }}>
+              {i18n.language.startsWith("en")
+                ? "Something went wrong. Please try again."
+                : "Ocurrió un error al enviar el mensaje."}
+            </p>
+          )}
+
+          <p className="tiny muted" style={{ marginTop: 8 }}>
+            {t("contact.also")}
+          </p>
         </form>
       </div>
     </Section>
