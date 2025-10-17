@@ -2,33 +2,124 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/src/assets/icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Básico SEO -->
     <title>GetCoded — Sitios y soluciones con IA</title>
+    <meta
+      name="description"
+      content="Landing pages, sitios web y e-commerce listos en días. Agencia potenciada por IA enfocada en leads y ventas."
+    />
+    <link rel="canonical" href="https://get-coded.com/" />
+    <meta
+      name="robots"
+      content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"
+    />
+    <meta name="theme-color" content="#0b0b0b" />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://get-coded.com/" />
+    <meta property="og:title" content="GetCoded — Sitios y soluciones con IA" />
+    <meta
+      property="og:description"
+      content="Landing pages, sitios web y e-commerce listos en días. Enfoque en conversiones."
+    />
+    <meta property="og:image" content="https://get-coded.com/assets/og.png" />
+    <meta property="og:site_name" content="GetCoded" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="GetCoded — Sitios y soluciones con IA"
+    />
+    <meta
+      name="twitter:description"
+      content="Landing pages, sitios web y e-commerce listos en días."
+    />
+    <meta name="twitter:image" content="https://get-coded.com/assets/og.png" />
+
+    <!-- Iconos (mover archivos a /public) -->
+    <link rel="icon" href="src/assets/icon.png" sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="src/assets/icon.png"
+      sizes="512x512"
+    />
+    <link rel="apple-touch-icon" href="src/assets/apple-touch-icon.png" />
+
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '3358329517652247');
-fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=3358329517652247&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
+
+    <!-- JSON-LD: Organization + WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "GetCoded",
+        "url": "https://get-coded.com",
+        "logo": "https://get-coded.com/logo.png",
+        "sameAs": ["https://www.instagram.com/getcoded.studio"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://get-coded.com",
+        "name": "GetCoded",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://get-coded.com/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
+    <!-- Meta Pixel -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "3358329517652247");
+      fbq("track", "PageView");
+    </script>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=3358329517652247&ev=PageView&noscript=1"
+      />
+    </noscript>
+    <!-- End Meta Pixel -->
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
